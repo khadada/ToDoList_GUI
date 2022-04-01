@@ -1,0 +1,36 @@
+Explanation:
+--------------
+Here we start by creating out ToDoListGUI class which inherits from QWidget. In the add_components method, a few Qlabels widgets which will serve as header labels for the GUI and the different sections are created. A QPushButton, which will close the program, is also instantiated.
+	The mustdo section uses the QGridLayout class. A marign can be set to frame a layout using the setContentMargins(left, top, right,bottom) method.
+
+	mustdo_grid.setContentMargins(5, 5, 5, 5)
+Each integet specifies the size of the border in pixels. Then the layout managers, mustdo_grid and appt_v_box, and their widgets are created and added. Finally the title, the two layout, and close button are add to the main_graid layout, and the main_grid set as the main layout using setLayout().
+
+Adding Widgets and Spanning Rows and Columns with QGridLayout
+
+Since widgets will placed in a grid-like stucture, when you add a new objects to the layout, you must specify the row ad the column values as parameters of the addWidget() or addLayout() methods. Take a look at the following lines:
+	main_grid.addWidget(todo_title,0, 0)
+	main_grid.addLayout(mustdo_grid, 1, 0)
+	main_grid.addLayout(appt_v_box, 1, 1)
+
+	The todo_title Qlable widget is added to the main_grid layout at the position where the row equal 0, and column equal to 0, which is also th top left corner. Then the mustdo_grid is add directlu below it by increasing the row value to "1" and leaving the column value equal to "0". Finally, we add move over one column for the appt_v_box layout by setting the column value to "1". If you want to build a GUI with more widgets using QGridLayout, then you would just continue in this manner moving away from 0,0.
+	But what happens if you have widget in a column or row that is next to another widget that needs to take up more space vertical or horizontal direction?
+QGridLayout allow us to specify the number of rows and colums that we need a single widget or layout to span. spanning can be thought of as stretching a widget horizontally or vertically to help us better arrange our GUI.	
+	main_grid.addWidget(clear_btn, 2, 0, 1, 2)
+
+The extra two parameters at the end, "1" and "3", tell the layout manager that we want to span one row and three columns. This causes the widget to stretch horizonatally.
+
+
+#----------------------[ Summary ]--------------------------
+Taking the time to learn about layout management will save you time sava you time and effort when coding your own GUI applications. In this chapter we reviewed absolute postioning using move() method and we learned about three layout managers QBoxLayout, QFormLayout, and QGridLayout. Each of this classes has their own special purpose, but one of the real powers of PyQt is how to convenient it is to nest them into other layouts to make more complex GUIs.
+	
+	It is important to note that any of the subclasses within QWidget can also use a layout managet to manage their childred. The advantages of using layout manager include
+	* Positioning of child widgets.
+	* Setting default sizes for windows
+	* handling resizing of windows
+	* Updating content in the window or parent widget when 	something changes, such as type of font, font size, and 	hiding, showing, or removing of a child widget.
+
+
+You can actually desing and layout your interface graphiclly insing Qt Desinger Applicatin. We will take a brief look at how to do this in Chapter "7".
+
+	
